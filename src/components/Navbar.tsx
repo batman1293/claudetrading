@@ -9,6 +9,7 @@ interface NavbarProps {
 }
 
 const tabs = [
+  { id: "signals", label: "Signals", icon: "⚡" },
   { id: "overview", label: "Overview", icon: "◈" },
   { id: "money-flow", label: "Money Flow", icon: "⇄" },
   { id: "sectors", label: "Sectors", icon: "⊞" },

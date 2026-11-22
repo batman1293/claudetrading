@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Signals tab (momentum entry/exit tracker)
+
+The default **⚡ Signals** tab pulls real daily prices from Yahoo Finance (`/api/signals?symbol=MSFT`)
+and evaluates, for each stock in your watchlist (default MSFT, INTC, NVDA; add/remove tickers in the UI —
+saved in your browser):
+
+- **Exit rule 1** — close crosses below the 21-day SMA, and the next day's close is still below it
+  (toggle: optionally require that day-2 candle to be green).
+- **Exit rule 2** — RSI(14, Wilder) below 40.
+- **Entry (default)** — close crosses above the 21-day SMA, holds above it the next day, RSI > 50.
+- **Support / resistance** — swing-pivot clusters (±1.5%) over the last ~9 months.
+
+Logic lives in `src/lib/indicators.ts`. Run with `npm run dev` and open http://localhost:3000.
